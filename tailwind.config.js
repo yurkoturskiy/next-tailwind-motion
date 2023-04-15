@@ -1,3 +1,15 @@
+const colors = require("@radix-ui/colors");
+let radixColors = {}
+let radixDarkColors = {}
+
+for (const [key, value] of Object.entries(colors)) {
+  if (key.includes("Dark")) {
+    radixDarkColors = {...radixDarkColors, ...value}
+  } else {
+  radixColors = {...radixColors, ...value}
+  }
+}
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -6,7 +18,14 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        d: {
+          ...radixDarkColors,
+        },
+        ...radixColors,
+      },
+    },
   },
   plugins: [],
 };
