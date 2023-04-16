@@ -1,12 +1,13 @@
-const colors = require("@radix-ui/colors");
-let radixColors = {}
-let radixDarkColors = {}
+const { fontFamily } = require("tailwindcss/defaultTheme");
 
+const colors = require("@radix-ui/colors");
+let radixColors = {};
+let radixDarkColors = {};
 for (const [key, value] of Object.entries(colors)) {
   if (key.includes("Dark")) {
-    radixDarkColors = {...radixDarkColors, ...value}
+    radixDarkColors = { ...radixDarkColors, ...value };
   } else {
-  radixColors = {...radixColors, ...value}
+    radixColors = { ...radixColors, ...value };
   }
 }
 
@@ -19,6 +20,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-inter)", ...fontFamily.sans],
+      },
       colors: {
         d: {
           ...radixDarkColors,
